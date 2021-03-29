@@ -1,10 +1,10 @@
-import { Comment_I } from './../../../interfaces/coment.interface';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { addNewListAction, selectIdTareaAction, updateTareaAction, addUserOnBoardAction } from 'src/app/redux/actions/board.action';
 
-import { addNewListAction, updateTareaAction } from 'src/app/redux/actions/board.action';
 // INTERFACES
-import { Board_I } from '../../../interfaces/board.interface';
+import { Board_I } from 'src/app/interfaces/board.interface';
+import { Comment_I } from './../../../interfaces/coment.interface';
 import { User_I } from 'src/app/interfaces/user.interface';
 import { Tarea_I } from 'src/app/interfaces/tarea.interface';
 
@@ -44,10 +44,6 @@ export class TareasComponent {
     this._store.dispatch(updateTareaAction(title, desc, this.idBoard, this.boards))
   }
 
-
-
-
-
   boardId: string;
   tareaId: string;
   captureBoaridAndTareaid(tareaId: string, boardId: string) {
@@ -55,16 +51,8 @@ export class TareasComponent {
     this.tareaId = tareaId;
   }
 
-
-
   setIdTarea(idTarea: string, idBoard: string, comments: Comment_I) {
-
-    const payload = {
-      type: "SELECT_ID_TAREA",
-      idTarea,
-      idBoard
-    }
-    this._store.dispatch(payload)
+    this._store.dispatch(selectIdTareaAction(idTarea, idBoard, comments))
   }
 
   selectuser: any = "";
@@ -72,15 +60,8 @@ export class TareasComponent {
     this.selectuser = user;
   }
 
-  addUserOnBoard(boards, idBoard) {
-
-    const payload = {
-      type: "ADD_USER_ON_BOARD",
-      dataBoards: boards,
-      idBoard,
-      user: this.selectuser
-    }
-    this._store.dispatch(payload)
+  addUserOnBoard(boards: Board_I[], idBoard: string) {
+    this._store.dispatch(addUserOnBoardAction(boards, idBoard, this.selectuser))
   }
 
 

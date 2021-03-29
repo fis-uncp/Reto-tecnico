@@ -9,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TableroComponent implements OnInit {
 
   @Input() board;
+  @Input() title;
   constructor() { }
 
   ngOnInit(): void {

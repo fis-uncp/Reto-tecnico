@@ -1,10 +1,10 @@
-import { Comment_I } from './../../../interfaces/coment.interface';
-import { ADD_COMMENT } from './../../actions/board.action';
+import { v4 as uuidv4 } from 'uuid';
+import { ADD_NEW_BOARD, UPDATE_TAREA, ADD_COMMENT, SELECT_ID_TAREA, ADD_USER_ON_BOARD } from '../../actions/board.action';
 // import { Action } from "@ngrx/store";
 import { Board_I } from 'src/app/interfaces/board.interface';
 import { Tarea_I } from 'src/app/interfaces/tarea.interface';
-import { v4 as uuidv4 } from 'uuid';
-import { ADD_NEW_BOARD, UPDATE_TAREA } from '../../actions/board.action';
+import { Comment_I } from './../../../interfaces/coment.interface';
+import { User_I } from 'src/app/interfaces/user.interface';
 
 const stateStart = {
   boards: [
@@ -25,11 +25,10 @@ const stateStart = {
 
   selectedTareaId: "",
   selectedBoardId: "",
-  imgParfil:"/assets/images/imagen1.jpg"
+  imgParfil: "/assets/images/imagen1.jpg"
 }
 
 const updateTarea = (idBoard: string, dataBoards: Board_I[], tareaToAdd: Tarea_I) => {
-
   return dataBoards.map(dataBoard => {
     if (dataBoard.id === idBoard) {
       const tareas: any = [...dataBoard.tareas, tareaToAdd]
@@ -43,7 +42,6 @@ const updateTarea = (idBoard: string, dataBoards: Board_I[], tareaToAdd: Tarea_I
 }
 
 const addComennt = (tareaId: string, boardId: string, dataBoards: any, commentToAdd: Comment_I) => {
-
   return dataBoards.map((dataBoard: any) => {
     if (dataBoard.id === boardId) {
       const commentUpdate = dataBoard.tareas.map((tarea: any) => {
@@ -62,7 +60,18 @@ const addComennt = (tareaId: string, boardId: string, dataBoards: any, commentTo
       return dataBoard;
     }
   })
+}
 
+const addUserOnBoard = (idBoard: string, dataBoards: Board_I[], user: User_I) => {
+  return dataBoards.map((board: any) => {
+    if (board.id === idBoard) {
+      const users: any = [...board.users, user];
+      board = { ...board, users };
+      return board;
+    } else {
+      return board;
+    }
+  })
 }
 
 
@@ -92,7 +101,7 @@ export function boardReducer(state = stateStart, action) {
         boards: addComennt(tareaId, boardId, dataBoards, commentToAdd)
       }
 
-    case "SELECT_ID_TAREA":
+    case SELECT_ID_TAREA:
       const { idTarea } = action;
       return {
         ...state,
@@ -100,21 +109,11 @@ export function boardReducer(state = stateStart, action) {
         selectedBoardId: idBoard,
       }
 
-
-    case "ADD_USER_ON_BOARD":
+    case ADD_USER_ON_BOARD:
       const { user } = action;
       return {
         ...state,
-        boards: dataBoards.map((board: any) => {
-          if (board.id === idBoard) {
-            const users: any = [...board.users, user];
-            board = { ...board, users };
-            return board;
-          } else {
-            return board;
-          }
-        })
-
+        boards: addUserOnBoard(idBoard, dataBoards, user),
       }
 
     default:
