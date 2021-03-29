@@ -1,0 +1,48 @@
+.card-boards {
+  width: 155px;
+  height: 155px;
+  padding: 10px;
+  background-color: $blanco;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 10px;
+  cursor: pointer;
+  &__title {
+    color: $gris-claro;
+    h2 {
+      font-weight: bold;
+      font-size: 30px;
+      transition: all 0.5s;
+      &:hover{
+        color: $azul-bajo;
+      }
+    }
+  }
+  &__perfils {
+    width: 100%;
+  }
+}
+
+.perfil {
+  display: flex;
+  &__wraper {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    margin-right: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    &--large {
+      width: 40px;
+      height: 40px;
+    }
+    &-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: solid 3px $rosado;
+    }
+  }
+}

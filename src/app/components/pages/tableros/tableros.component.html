@@ -1,0 +1,25 @@
+<section class="board">
+
+  <app-header></app-header>
+
+  <div class="board__body">
+    <div class="board__body-title">
+      <h2>My Boards</h2>
+    </div>
+    <div class="board__body-cards">
+      <div class="cards-container">
+        <app-tablero  *ngFor="let board of boards" [board]=board></app-tablero>
+      </div>
+    </div>
+
+    <div class="board__body-title mt-3">
+      <h2>Others Boards</h2>
+    </div>
+    <div class="board__body-cards">
+      <div class="cards-container">
+        <app-tablero *ngFor="let item of [1,2]"></app-tablero>
+      </div>
+    </div>
+  </div>
+
+</section>

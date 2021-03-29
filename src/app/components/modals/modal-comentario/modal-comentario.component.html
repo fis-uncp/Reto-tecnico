@@ -1,0 +1,42 @@
+<!-- MODAL CREAR TAREA -->
+<div class="modal fade" id="modalDetailTarea" tabindex="-1" aria-hidden="true">
+
+  <div class="modal-dialog">
+    <div class="tarea-detail modal-content px-2">
+      <div class="tarea-detail__header modal-header">
+        <button type="button" class="close text-left" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="tarea-detail__body modal-body px-0 pb-0">
+        <div class="tarea-description">
+          <input type="text" class="form-control allowed" [value]=tareas.title disabled>
+          <h5 class="modal-title mt-2">Description</h5>
+          <textarea class="form-control allowed" rows="3" [value]=tareas.description disabled>
+      </textarea>
+        </div>
+        <div class="tarea-badges">
+          <span class="badge badge-pill badge-danger">danger</span>
+          <span class="badge badge-pill badge-warning">Warning</span>
+          <span class="badge badge-pill badge-info">Info</span>
+        </div>
+        <div class="tarea-coments">
+          <h5 class="modal-title my-2">Comments</h5>
+          <div class="tarea-coments__wraper my-2" *ngFor="let comment of tareas.comments">
+            <div class="perfil__wraper perfil__wraper--large">
+              <img class="perfil__wraper-image" [src]="imgParfil" >
+            </div>
+            <span class="ml-2">{{comment.description}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="tarea-detail__footer modal-foter row">
+        <textarea class="form-control" placeholder="Type comment here..." rows="3" #coment>
+        </textarea>
+        <button class="col btn btn-primary mt-2" type="button" (click)="addComentToTarea(coment.value)">
+          Agregar Comentario
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

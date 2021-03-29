@@ -1,0 +1,125 @@
+<div class="tarea">
+  <app-header></app-header>
+
+  <div class="tarea__body">
+    <div class="tarea__body-title">
+      <h2>Todo for today</h2>
+    </div>
+    <section class="tarea__body-pefils">
+
+      <section class="perfil">
+        <div class="perfil__invitation">
+          <span class="icon icon-plus"></span>
+        </div>
+        <div class="perfil__container">
+          <div *ngFor="let user of users">
+            <!-- ABRIR MODAL PARA ENVITAR USERS -->
+            <div class="perfil__wraper perfil__wraper--large" data-toggle="modal" data-target="#modalInviteUser"
+              (click)="selectedUser(user)">
+              <img class="perfil__wraper-image" [src]="user.image" alt="perfil">
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <section class="tarea__body-cards">
+
+      <!-- BUTTON MODAL CREAR LISTA-->
+      <button type="button" class="button button__add--green" data-toggle="modal" data-target="#modalCreateBoard">
+        <span class="icon-plus"></span>
+      </button>
+
+      <div class="tarea-card">
+        <div class="tarea-card__wraper" *ngFor="let board of boards; let i = index">
+          <div class="tarea-card__title">
+            <h3 class="text text__title-card">{{board.title}}</h3>
+          </div>
+
+          <div class="tarea-card__content">
+
+            <div *ngFor="let tarea of board.tareas">
+              <div class="text text__tarea pointer" (click)="setIdTarea(tarea.id, board.id)" data-toggle="modal"
+                data-target="#modalDetailTarea">
+                {{tarea.title}}
+              </div>
+            </div>
+          </div>
+
+          <div class="tarea-card__button mt-3">
+            <!-- BOTON MODAL CREAR TAREA -->
+            <button type="button" class="button button__add--gris btn-block" data-toggle="modal"
+              data-target="#modalCreateTarea" (click)="captureIdBoard(board.id)">
+              <span class="icon icon-plus"></span>Add new Tarea
+            </button>
+            <!-- MODAL CREAR TAREA -->
+            <div class="modal fade" id="modalCreateTarea" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content px-2">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Tablero: {{board.title}}</h5>
+                  </div>
+                  <form action="">
+                    <div class="modal-body px-0">
+                      <input type="text" class="form-control" placeholder="Nombre de la Tarea" #titleTarea>
+                      <textarea class="form-control mt-2" placeholder="Descripción de la Tarea" rows="3"
+                        #descTarea></textarea>
+                    </div>
+                    <div class="modal-foter row">
+                      <button type="button" class="col btn btn-primary" data-dismiss="modal"
+                        (click)="addNewTarea(titleTarea.value, descTarea.value)">
+                        Agregar Tarea
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+<app-modal-comentario></app-modal-comentario>
+
+<!-- MODAL CREAR LISTA O UN BOARD -->
+<div class="modal fade" id="modalCreateBoard" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content px-2">
+      <form action="">
+        <div class="modal-body px-0">
+          <input type="text" class="form-control" placeholder="Nombre del Tablero" #titleBoard>
+        </div>
+        <div class="modal-foter row">
+          <button type="button" class="col btn btn-primary" (click)="addNewBoard(titleBoard.value)"
+            data-dismiss="modal">Crear Lista</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL INVITAR USUARIO -->
+<div class="modal fade" id="modalInviteUser" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content px-2">
+      <form action="">
+        <div class="modal-body px-0">
+          <input type="text" class="form-control" [value]=selectuser.mail placeholder="user@example.com" disabled #titleBoard>
+          <select class="form-control mt-3" id="exampleFormControlSelect1" #boardId>
+            <option *ngFor="let board of boards" [value]=board.id >{{board.title}}</option>
+          </select>
+        </div>
+        <div class="modal-foter row">
+          <button type="button" class="col btn btn-primary" (click)="addUserOnBoard(boards, boardId.value)"
+          data-dismiss="modal" >Send envitation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+@import "../resource/boardPresent";
+
+.board {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    .header-logo {
+      transform: rotate(90deg);
+      color: $blanco;
+      font-size: 26px;
+    }
+  }
+  &__body {
+    &-title {
+      h2 {
+        font-size: 24px;
+        color: $blanco;
+        margin-bottom: 5px;
+      }
+    }
+    &-cards {
+      overflow: hidden;
+      height: 175px;
+      .cards-container {
+        display: flex;
+        padding: 10px 0;
+        overflow-x: scroll;
+      }
+    }
+  }
+}

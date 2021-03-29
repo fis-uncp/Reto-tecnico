@@ -1,0 +1,147 @@
+.tarea {
+  &__body {
+    &-title {
+      h2 {
+        color: $blanco;
+        font-size: 25px;
+      }
+    }
+    &-pefils {
+      padding: 6px 0 15px;
+    }
+    &-cards {
+      display: flex;
+      height: 493px;
+      overflow: hidden;
+      .button {
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
+// IMAGENES DE USUARIOS TIPO ICONOS
+.perfil {
+  overflow: hidden;
+  height: 40px;
+  &__invitation {
+    background-color: $azul-bajo;
+    color: $blanco;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 5px;
+    &::before {
+      margin-top: 1px;
+    }
+    .icon {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1px;
+      border-radius: 50%;
+    }
+  }
+  &__container {
+    display: flex;
+    padding: 0;
+    height: 60px;
+    overflow-x: auto;
+  }
+}
+
+// CARD DE LISTA DE TAREAS
+.tarea-card {
+  display: flex;
+  width: 100%;
+  background-color: $morado;
+  border-radius: 8px;
+  height: 510px;
+  padding: 0;
+  overflow-x: auto;
+
+  &__wraper {
+    background: white;
+    width: 210px;
+    padding: 10px;
+    margin-right: 5px;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  &__title {
+    width: 190px;
+  }
+  &__content {
+  }
+  &__button {
+    .button {
+      position: absolute;
+      width: 190px;
+      bottom: 30px;
+    }
+  }
+}
+
+// MODAL CREAR LISTA - BOARD
+.modal-foter {
+  width: 100%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+// MODAL DE DETALLES Y COMENTARIOS
+
+.tarea-detail {
+  &__header {
+    border: none;
+    position: relative;
+    button {
+      position: absolute;
+      left: -18px;
+      font-size: 34px;
+      opacity: 0.4;
+      top: 3px;
+    }
+  }
+  &__body {
+    .tarea-description {
+      .modal-title {
+        font-weight: bold;
+        font-size: 18px;
+        color: $gris-texto;
+      }
+    }
+    .tarea-badges {
+      margin-top: 10px;
+      .badge {
+        margin-right: 6px;
+        border-radius: 4px;
+        color: white;
+      }
+    }
+    .tarea-coments {
+      .modal-title{
+        font-weight: bold;
+        font-size: 18px;
+        color: $gris-texto;
+      }
+      &__wraper {
+        display: flex;
+        align-items: center;
+        span{
+          font-size: 14px;
+          line-height: 18px;
+          color: $gris-texto;
+        }
+
+      }
+    }
+  }
+  &__footer {
+  }
+}

@@ -1,0 +1,13 @@
+<a class="card-boards" routerLink="tareas">
+  <div class="card-boards__title">
+    <h2 class="">Todo for today</h2>
+  </div>
+  <div class="card-boards__perfils">
+    <section class="perfil">
+      <div class="perfil__wraper mr-2" *ngFor="let user of board?.users">
+        <img class="perfil__wraper-image"
+          [src]=user.image alt="perfil">
+      </div>
+    </section>
+  </div>
+</a>

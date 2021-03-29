@@ -1,0 +1,77 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $morado;
+}
+
+.button {
+  border: none;
+  outline: none;
+  &__add {
+    &--green {
+      background-color: $verde-agua;
+      color: $blanco;
+      height: 150px;
+      width: 40px;
+      border-radius: 8px;
+      transition: all 0.5s;
+      &:hover {
+        background: rgb(0, 223, 130);
+      }
+    }
+    &--gris{
+      background: transparent;
+      border: solid 1px red;
+      color: $gris-claro;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border:dashed 2px $gris-claro;
+      border-radius: 8px;
+      transition: all 0.5s;
+      .icon{
+        height: 19px;
+        margin-right: 5px;
+      }
+      &:hover{
+        background-color: $gris-claro;
+        color: $blanco;
+      }
+    }
+  }
+}
+
+.text {
+  &__tarea {
+    margin: 0;
+    background: $gris-fondo;
+    color: $gris-texto;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  &__title-card {
+    color: $gris-claro;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.allowed{
+  cursor: not-allowed;
+}
+
+a{
+  transition: all .5s;
+  outline: none;
+}
